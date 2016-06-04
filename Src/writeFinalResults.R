@@ -1,0 +1,6 @@
+write(paste(dataSet, best_rank_li, best_rank_gs, sep = "\t"), file = best_ranks_file, append = TRUE)
+write(paste(dataSet, worst_rank_li, worst_rank_gs, sep = "\t"), file = worst_ranks_file, append = TRUE)
+write(paste(dataSet, best_p_li, best_p_gs, sep = "\t"), file = best_p.values_file, append = TRUE)
+write(paste(dataSet, worst_p_li, worst_p_gs, sep = "\t"), file = worst_p.values_file, append = TRUE)
+write(paste(dataSet, best_q_li, best_q_gs, sep = "\t"), file = best_q.values_file, append = TRUE)
+write(paste(dataSet, worst_q_li, worst_q_gs, sep = "\t"), file = worst_q.values_file, append = TRUE)

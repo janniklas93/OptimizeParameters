@@ -30,7 +30,7 @@ if(length(names_dupli) > 0){
 }
   
 # write ExpressionSet.gct file in Input directory
-fileConn = file(paste(celFilesPath, paste("ExpressionSet_", backMethod, ".gct", sep = ""), sep = "/"))
+fileConn = file(paste(celFilesPath, paste("ExpressionSet_", paste(backMethod, normalizeMethod, summaryMethod, sep = "_"), ".gct", sep = ""), sep = "/"))
 writeLines(c("#1.2", paste(length(expression_out$NAMES), length(expression_out) - 2, sep = "\t")), fileConn)
 close(fileConn)
-write.table(expression_out, file = paste(celFilesPath, paste("ExpressionSet_", backMethod, ".gct", sep = ""), sep ="/" ), sep = "\t", row.names = FALSE, quote = FALSE, append = TRUE)
+write.table(expression_out, file = paste(celFilesPath, paste("ExpressionSet_", paste(backMethod, normalizeMethod, summaryMethod, sep = "_"), ".gct", sep = ""), sep ="/" ), sep = "\t", row.names = FALSE, quote = FALSE, append = TRUE)

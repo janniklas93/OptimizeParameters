@@ -17,10 +17,10 @@ all_non_diffGenes = length(counti) - all_diffGenes
 p_values = unlist(lapply(gene_sets, FUN = p_value, diffGenes))
 q_values = round(p.adjust(p_values, "BH"), 10)
 diffGenes_set = unlist(lapply(gene_sets, FUN = number, diffGenes))
-index_p = which(p_values <= 0.05)
-index_q = which(q_values <= 0.25)
 
 resultData = data.frame("GS" = pathwayID, "genes_in_set" = numberGenes, "diffGenes_in_set" = diffGenes_set, "percentage" = round((diffGenes_set / numberGenes) * 100, 3), "p_value" = p_values, "q_value" = q_values)
 resultData = resultData[order(resultData$q_value, decreasing = FALSE), ]
 
-write.table(resultData, file = paste(outputPath, backMethod, "limma_Results", paste("lfc_", lfc_exp, sep = ""), "diffGenes_pathway_enrichment.csv", sep = "/"), row.names = FALSE, sep = ",")
+GSOA_out = paste(outputPath, paste(backMethod, normalizeMethod, summaryMethod, sep = "_"), "limma_Results", paste(paste("pVal", str_replace(as.character(p_val), "\\.", "_"), sep = ""), paste("lFc", str_replace(as.character(lfc_exp), "\\.", "_"), sep = ""), sep = "_"), sep = "/")
+
+write.table(resultData, file = paste(GSOA_out, "diffGenes_pathway_enrichment.csv", sep = "/"), row.names = FALSE, sep = ",")

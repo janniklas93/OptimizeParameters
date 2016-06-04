@@ -323,52 +323,6 @@ GSEA.EnrichmentScore <- function(gene.list, gene.set, weighted.score.type = 1, c
 }
 
 
-OLD.GSEA.EnrichmentScore <- function(gene.list, gene.set) {  
-#
-# Computes the original GSEA score from Mootha et al 2003 of gene.set in gene.list 
-#
-# Inputs:
-#   gene.list: The ordered gene list (e.g. integers indicating the original position in the input dataset)  
-#   gene.set: A gene set (e.g. integers indicating the location of those genes in the input dataset) 
-#
-# Outputs:
-#   ES: Enrichment score (real number between -1 and +1) 
-#   arg.ES: Location in gene.list where the peak running enrichment occurs (peak of the "mountain") 
-#   RES: Numerical vector containing the running enrichment score for all locations in the gene list 
-#   tag.indicator: Binary vector indicating the location of the gene sets (1's) in the gene list 
-#
-# The Broad Institute
-# SOFTWARE COPYRIGHT NOTICE AGREEMENT
-# This software and its documentation are copyright 2003 by the
-# Broad Institute/Massachusetts Institute of Technology.
-# All rights are reserved.
-#
-# This software is supplied without any warranty or guaranteed support
-# whatsoever. Neither the Broad Institute nor MIT can be responsible for
-# its use, misuse, or functionality.
-
-   tag.indicator <- sign(match(gene.list, gene.set, nomatch=0))    # notice that the sign is 0 (no tag) or 1 (tag) 
-   no.tag.indicator <- 1 - tag.indicator 
-   N <- length(gene.list) 
-   Nh <- length(gene.set) 
-   Nm <-  N - Nh 
-
-   norm.tag    <- sqrt((N - Nh)/Nh)
-   norm.no.tag <- sqrt(Nh/(N - Nh))
-
-   RES <- cumsum(tag.indicator * norm.tag - no.tag.indicator * norm.no.tag)      
-   max.ES <- max(RES)
-   min.ES <- min(RES)
-   if (max.ES > - min.ES) {
-      ES <- signif(max.ES, digits=5)
-      arg.ES <- which.max(RES)
-   } else {
-      ES <- signif(min.ES, digits=5)
-      arg.ES <- which.min(RES)
-   }
-   return(list(ES = ES, arg.ES = arg.ES, RES = RES, indicator = tag.indicator))    
-}
-
 GSEA.EnrichmentScore2 <- function(gene.list, gene.set, weighted.score.type = 1, correl.vector = NULL) {  
 #
 # Computes the weighted GSEA score of gene.set in gene.list. It is the same calculation as in 
@@ -2093,7 +2047,6 @@ GSEA.write.gct <- function (gct, filename)
     return(gct)
 }
 
-
 GSEA.ConsPlot <- function(V, col.names, main = " ", sub = " ", xlab=" ", ylab=" ") {
 
 # Plots a heatmap plot of a consensus matrix
@@ -2108,8 +2061,6 @@ GSEA.ConsPlot <- function(V, col.names, main = " ", sub = " ", xlab=" ", ylab=" 
 	     B[k, j] <-  max.val - V[i, j] + min.val
           }
      }
-
- 
 
 #     col.map <- c(rainbow(100, s = 1.0, v = 0.75, start = 0.0, end = 0.75, gamma = 1.5), "#BBBBBB", "#333333", "#FFFFFF")
      col.map <- rev(c("#0000FF", "#4040FF", "#7070FF", "#8888FF", "#A9A9FF", "#D5D5FF", "#EEE5EE", "#FFAADA", "#FF9DB0", "#FF7080", "#FF5A5A", "#FF4040", "#FF0D1D"))
@@ -2165,7 +2116,6 @@ GSEA.HeatMapPlot2 <- function(V, row.names = "NA", col.names = "NA", main = " ",
 
 	return()
 }
-
 
 GSEA.Analyze.Sets <- function(
    directory,
@@ -2511,8 +2461,6 @@ GSEA.Analyze.Sets <- function(
         }
    }
 
-
-
    cmap <-  c("#AAAAFF", "#111166")
 #   GSEA.HeatMapPlot2(V = A, row.names = A.row.names, col.names = A.names, main = "Leading Subsets Assignment (clustered)", sub = paste(doc.string, " - ", phen1, sep=""), xlab=" ", ylab=" ", color.map = cmap) 
 
@@ -2534,11 +2482,6 @@ GSEA.Analyze.Sets <- function(
    } else {
         dev.off()
    }
-
-
-
-
-
 
 # resort columns and rows for phen2
 
@@ -2618,12 +2561,3 @@ GSEA.Analyze.Sets <- function(
    }
 
 }
-
-
-
-
-
-
-
-
-

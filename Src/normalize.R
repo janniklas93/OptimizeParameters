@@ -1,4 +1,4 @@
-eset = threestep(rawData, background.method = backMethod, normalize.method = "quantile", summary.method = "median.polish")
+eset = threestep(rawData, background.method = backMethod, normalize.method = normalizeMethod, summary.method = summaryMethod)
 
 rownames(pData(eset)) = base::gsub(c(".gz|.CEL|.cel|.GZ"), "", rownames(pData(eset)))
 mapping_cohort_p      = match(base::gsub(c(".gz|.CEL|.cel|.GZ"), "", rownames(pData(eset))), base::gsub(c(".gz|.CEL|.cel|.GZ"), "", names(cohortsVec)), nomatch = 0)

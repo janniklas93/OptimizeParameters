@@ -6,6 +6,14 @@ cont.matrix = makeContrasts(contrast = CASE - CTRL,  levels = design)
 fit = contrasts.fit(fit, cont.matrix)
 fit = eBayes(fit)
 volc_all = topTable(fit, coef = "contrast", number  = nrow(eset), adjust  = "none", p.value = 1, lfc = 0)
+
+#topall = volc_all[-which(hgnc_symbols %in% ""), ]
+#hgnc_sym_limma = hgnc_symbols[-which(hgnc_symbols %in% "")]
+#topall = cbind(topall, hgnc_sym_limma)
+#topall = topall[topall$adj.P.Val <= 0.05, ]
+#topall = topall[order(abs(topall$logFC), decreasing = TRUE), ]
+#topall = topall[1:(anteil_diff * length(topall[, 1])), ]
+
 topall = topTable(fit, coef = "contrast", number  = nrow(eset), adjust = "none", p.value = p_val, lfc = lfc_exp)
 
 if(dim(topall)[1] == 0){
@@ -45,5 +53,5 @@ if(dim(topall)[1] == 0){
 }
 
 topall_res = topall_res[order(topall_res$logFC, decreasing = TRUE), ]
-dir.create(paste(outputPath, backMethod, "limma_Results", paste("lfc_", lfc_exp, sep = ""), sep = "/"), showWarnings = FALSE, recursive = TRUE)
-write.table(topall_res, file = paste(outputPath, backMethod, "limma_Results", paste("lfc_", lfc_exp, sep = ""), "dif_exp_results.csv", sep = "/"), row.names = FALSE, sep = ",")
+dir.create(paste(outputPath, paste(backMethod, normalizeMethod, summaryMethod, sep = "_"),  "limma_Results", paste(paste("pVal", str_replace(as.character(p_val), "\\.", "_"), sep = ""), paste("lFc", str_replace(as.character(lfc_exp), "\\.", "_"), sep = ""), sep = "_"), sep = "/"), showWarnings = FALSE, recursive = TRUE)
+write.table(topall_res, file = paste(outputPath, paste(backMethod, normalizeMethod, summaryMethod, sep = "_"), "limma_Results", paste("lfc_", lfc_exp, sep = ""), "dif_exp_results.csv", sep = "/"), row.names = FALSE, sep = ",")

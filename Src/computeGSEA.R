@@ -1,4 +1,4 @@
-gseaOutputPath = paste(outputPath, backMethod, "gseaResults", paste(reshuffling_type, "weighted", weighted_score, sep = "_"), sep = "/")
+gseaOutputPath = paste(outputPath, paste(backMethod, normalizeMethod, summaryMethod, sep = "_"), "gseaResults", paste(reshuffling_type, "weighted", weighted_score, sep = "_"), sep = "/")
 dir.create(gseaOutputPath, recursive = TRUE, showWarnings = FALSE)
 project_ID     = paste(dataSet, backMethod, sep = "_")
 
@@ -39,3 +39,10 @@ GSEA.Analyze.Sets(
   height    = 16,
   width     = 16
 )
+
+.jinit()
+.jaddClassPath("Users/jan-niklas/OptimizeParameters/gsea2-2.2.2.jar")
+J("xtools.gsea.Gsea", "Gsea", c("-res", "Users/jan-niklas/OptimizeParameters/DataSets/GSE1297/Input/ExpressionSet_GCRMA.gct", "-cls", "Users/jan-niklas/OptimizeParameters/DataSets/GSE1297/Input/phenotypes_GSEA.cls", "-gmx", "Users/jan-niklas/OptimizeParameters/Misc/kegg_gene_sets.gmt", "-collapse", FALSE))
+system("java -Xmx1024m -cp Users/jan-niklas/OptimizeParameters/gsea2-2.2.2.jar xtools.gsea.Gsea -res Users/jan-niklas/OptimizeParameters/DataSets/GSE1297/Input/ExpressionSet_GCRMA.gct -cls Users/jan-niklas/OptimizeParameters/DataSets/GSE1297/Input/phenotypes_GSEA.cls -gmx Users/jan-niklas/OptimizeParameters/Misc/kegg_gene_sets.gmt -collapse false")
+
+J("xtools.gsea.Gsea")
