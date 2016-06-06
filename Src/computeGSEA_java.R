@@ -19,5 +19,5 @@ parameters = data.frame(para_ID, para_values)
 para_path = paste(gseaOutputPath, "Run_Parameters.txt", sep = "/")
 write.table(parameters, file = para_path, sep = "\t", col.names = FALSE, row.names = FALSE, quote = FALSE)
 
-system(paste("java -Xmx1024m -cp", paste(pipelineLoc, "gsea2-2.2.2.jar", sep = "/"), "xtools.gsea.Gsea -param_file", para_path, sep = " "), intern = TRUE)
+system(paste("sudo java -Xmx1024m -cp", paste(pipelineLoc, "gsea2-2.2.2.jar", sep = "/"), "xtools.gsea.Gsea -param_file", para_path, sep = " "), intern = TRUE)
 #system("java -Xmx1024m -cp /Users/Shared/OptimizeParameters/gsea2-2.2.2.jar xtools.gsea.Gsea -param_file /Users/Shared/OptimizeParameters/DataSets/GSE1297/Output/Analysis_2016_06_03/GCRMA_scaling_median.polish/gseaResults_tTest_phenotype/Run_Parameters.txt")
