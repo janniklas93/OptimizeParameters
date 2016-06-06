@@ -1,6 +1,6 @@
 kocent = (system('uname -n', intern = TRUE) == "kocent")
 if (kocent){
-  pipelineLoc = "home/janniklas//OptimizeParameters" #server path
+  pipelineLoc = "/home/janniklas/OptimizeParameters" #server path
 }else if(system('uname -n', intern = T) == "MacBook-Jan-Niklas.local" ){
   pipelineLoc = paste(system("echo $HOME", intern = T), "OptimizeParameters", sep = "/")
 }
