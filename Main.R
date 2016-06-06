@@ -74,10 +74,12 @@ foreach(i = 1:length(data_sets), .packages = pack_foreach) %dopar% {
         
         #### create expressionSet.gct if doesn't exist ####
         if(! file.exists(paste(celFilesPath, paste("ExpressionSet_", paste(backMethod, normalizeMethod, summaryMethod, sep = "_"), ".gct", sep =""), sep = "/"))){
+          source("Src/createExpressionOut.R", local = TRUE)
           source("Src/createExpression.gct.R", local = TRUE)
         }
         #### create phenotype label cls file if doesn't exist ####
         if(! file.exists(paste(celFilesPath, "phenotypes_GSEA.cls", sep = "/"))){
+          source("Src/createExpressionOut.R", local = TRUE)
           source("Src/createPhenoLabels.cls.R", local = TRUE)  
         }
     
