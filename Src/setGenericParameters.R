@@ -1,4 +1,5 @@
 date = Sys.Date()
+date = str_replace_all(date, "-", "_")
 project_name = paste("Analysis_", date, sep = "")
 celFilesPath = paste(pipelineLoc, "DataSets", dataSet, "Input", sep = "/")
 outputPath = paste(dirname(celFilesPath), "Output", project_name, sep = "/")
