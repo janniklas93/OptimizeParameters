@@ -48,11 +48,11 @@ foreach(i = 1:length(data_sets), .packages = pack_foreach) %dopar% {
   }
   
   #### perform normalization with changing parameters ####
-  foreach(b = 1:length(back_methods)) %dopar% {
+  for(b in 1:length(back_methods))  {
     backMethod = back_methods[b]
-    foreach(n = 1:length(normalize_methods)) %dopar% {
+    for(n in 1:length(normalize_methods))  {
       normalizeMethod = normalize_methods[n]
-      foreach(s = 1:length(summary_methods)) %dopar% {
+      for(s in 1:length(summary_methods))  {
         summaryMethod = summary_methods[s]
       
         source("Src/normalize.r", local = TRUE)
