@@ -1,5 +1,4 @@
-msigdb_path = "~/OptimizeParameters/Misc/kegg_gene_sets.gmt"
-gene_set_DB = readLines(msigdb_path)
+gene_set_DB = readLines(geneSetDB_path)
 gene_set_DB = lapply(gene_set_DB, FUN = strsplit, "\t")
 
 counti = c()
