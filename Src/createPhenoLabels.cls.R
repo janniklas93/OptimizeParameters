@@ -3,9 +3,9 @@ phenoLabels = rep(0, length(expression_out) - 2)
 phenoLabels[index_case] = set_case
 phenoLabels[index_ctrl] = set_ctrl
 if (phenoLabels[1] == set_case){
-  pheno_order = paste("#", case_GSEA, ctrl_GSEA, sep = " ")
+  pheno_order = paste("#", set_case, set_ctrl, sep = " ")
 } else {
-  pheno_order = paste( "#", ctrl_GSEA, case_GSEA, sep = " ")
+  pheno_order = paste( "#", set_case, set_ctrl, sep = " ")
 }
 phenoLabels = paste(phenoLabels, collapse = " ")
 writeLines(c(paste(length(expression_out) - 2 , "2", "1", sep = " "), pheno_order, phenoLabels), fileConn)
