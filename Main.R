@@ -5,7 +5,7 @@ if (kocent){
   pipelineLoc = paste(system("echo $HOME", intern = T), "OptimizeParameters", sep = "/")
 }
 
-pipelineLoc = "/Users/jan-niklas/OptimizeParameters"
+#pipelineLoc = "/Users/jan-niklas/OptimizeParameters"
 setwd(pipelineLoc)
 source("Src/loadPackages.R")
 
