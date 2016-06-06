@@ -55,7 +55,7 @@ foreach(i = 1:length(data_sets), .packages = pack_foreach) %dopar% {
       for(s in 1:length(summary_methods))  {
         summaryMethod = summary_methods[s]
       
-        source("Src/normalize.r", local = TRUE)
+        source("Src/normalize.R", local = TRUE)
   
         #### annotate data ####
         source("Src/annotation.R", local = TRUE)
