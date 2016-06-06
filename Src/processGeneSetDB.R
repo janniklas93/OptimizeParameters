@@ -1,3 +1,4 @@
+geneSetDB_path = paste(pipelineLoc, "Misc", "kegg_gene_sets.gmt", sep = "/")
 gene_set_DB = readLines(geneSetDB_path)
 gene_set_DB = lapply(gene_set_DB, FUN = strsplit, "\t")
 
