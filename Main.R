@@ -28,7 +28,7 @@ registerDoMC(numCores)
 
 source("Src/processGeneSetDB.R")
 
-target_pathways = read.table("~/OptimizeParameters/Misc/target_pathways.tab", sep = "\t", header = TRUE)
+target_pathways = read.table(paste(pipelineLoc, "/Misc/target_pathways.tab", sep = "/"), sep = "\t", header = TRUE)
 
 foreach(i = 1:length(data_sets), .packages = pack_foreach) %dopar% {
 
