@@ -54,4 +54,4 @@ if(dim(topall)[1] == 0){
 
 topall_res = topall_res[order(topall_res$logFC, decreasing = TRUE), ]
 dir.create(paste(outputPath, paste(backMethod, normalizeMethod, summaryMethod, sep = "_"),  "limma_Results", paste(paste("pVal", str_replace(as.character(p_val), "\\.", "_"), sep = ""), paste("lFc", str_replace(as.character(lfc_exp), "\\.", "_"), sep = ""), sep = "_"), sep = "/"), showWarnings = FALSE, recursive = TRUE)
-write.table(topall_res, file = paste(outputPath, paste(backMethod, normalizeMethod, summaryMethod, sep = "_"), "limma_Results", paste("lfc_", lfc_exp, sep = ""), "dif_exp_results.csv", sep = "/"), row.names = FALSE, sep = ",")
+write.table(topall_res, file = paste(outputPath, paste(backMethod, normalizeMethod, summaryMethod, sep = "_"), "limma_Results", paste(paste("pVal", str_replace(as.character(p_val), "\\.", "_"), sep = ""), paste("lFc", str_replace(as.character(lfc_exp), "\\.", "_"), sep = ""), sep = "_"), "dif_exp_results.csv", sep = "/"), row.names = FALSE, sep = ",")
