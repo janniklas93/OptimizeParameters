@@ -7,7 +7,7 @@ if(length(names_dupli) > 0){
   # collapsing duplicate gene symbols by logFC
   index_dupli = which(expression_out$NAMES %in% names_dupli)
   for (i in 1:length(names_dupli)){
-    index = which(expression_out$NAMES == names_dupli[i])
+    index = which(expression_out$NAMES %in% names_dupli[i])
     current = expression_out[index, ]
     current = aggregate(. ~ NAMES, data = current, median)
     #exprs_case_gsea = rowMeans(current[, index_case_gsea ])

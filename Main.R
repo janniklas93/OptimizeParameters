@@ -5,7 +5,7 @@ if (kocent){
   pipelineLoc = paste(system("echo $HOME", intern = T), "OptimizeParameters", sep = "/")
 }
 
-#pipelineLoc = "/Users/jan-niklas/OptimizeParameters"
+pipelineLoc = "/Users/jan-niklas/OptimizeParameters"
 setwd(pipelineLoc)
 source("Src/loadPackages.R")
 
@@ -21,8 +21,8 @@ pack_foreach = c("stringr", "hgu133plus2.db", "affy", "simpleaffy", "affyPLM", "
 source("Src/parametersToOptimize.R")
 
 numCores = detectCores() - 1
+clusters = makeCluster(numCores)
 registerDoMC(numCores)
-#clusters = makeCluster(numCores)
 #clusterExport(clusters, c("data_sets", "pipelineLoc", "set_ctrl", "set_case", "p_val", "lfc_exp"))
 #registerDoParallel(clusters)
 
