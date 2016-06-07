@@ -61,7 +61,7 @@ foreach(i = 1:length(data_sets), .packages = pack_foreach) %dopar% {
         source("Src/annotation.R", local = TRUE)
     
         ####
-        source("Src/computeLimma.R", local = TRUE)
+        #source("Src/computeLimma.R", local = TRUE)
         #for(p in 1:length(p_change)){
         #  p_val = p_change[p]
         #  for(l in 1:length(lfc_change)){
@@ -93,9 +93,9 @@ foreach(i = 1:length(data_sets), .packages = pack_foreach) %dopar% {
         #    source("Src/computeGSEA_java.R", local = TRUE)
         #  }
         #}
-      #}
-    #}
-  #}
+      }
+    }
+  }
   #### performance limma - extract ranks, p-values, q-values
   #source("Src/extractResults_limma.R", local = TRUE)
   
