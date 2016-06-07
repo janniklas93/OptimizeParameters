@@ -13,7 +13,7 @@ for(bm in 1:length(back_methods)){
     for(sm in 1:length(summary_methods)){
       for(pc in 1:length(p_change)){
         for(lc in 1:length(lfc_change)){
-          current = read.table(paste(outputPath, paste(back_methods[bm], normalize_methods[nm], summary_methods[sm], sep = "_"), "limmaResults", paste(paste("pVal", str_replace(as.character(p_change[pc]), "\\.", "_"), sep = ""), paste("lFc", str_replace(as.character(llfc_change[lc]), "\\.", "_"), sep = ""), sep = "_"), "diffGenes_pathway_enrichment.csv", sep = "/"), header = TRUE, sep = ",")
+          current = read.table(paste(outputPath, paste(back_methods[bm], normalize_methods[nm], summary_methods[sm], sep = "_"), "limma_Results", paste(paste("pVal", str_replace(as.character(p_change[pc]), "\\.", "_"), sep = ""), paste("lFc", str_replace(as.character(lfc_change[lc]), "\\.", "_"), sep = ""), sep = "_"), "diffGenes_pathway_enrichment.csv", sep = "/"), header = TRUE, sep = ",")
           current_rank = which(current$GS %in% targetPathway)
           all_ranks_li = c(all_ranks_li, current_rank)
           all_p_li     = c(all_p_li, current$p_value[current_rank])

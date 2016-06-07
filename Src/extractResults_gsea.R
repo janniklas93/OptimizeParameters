@@ -78,14 +78,14 @@ best_p_gs_setting = which(all_p_gs %in% best_p_gs)
 best_p_gs_setting = parameterSet_gs[best_p_gs_setting]
 worst_p_gs = max(all_p_gs)
 worst_p_gs_setting = which(all_p_gs %in% worst_p_gs)
-worst_p_gs_setting = parameterSet[worst_p_gs_setting]
+worst_p_gs_setting = parameterSet_gs[worst_p_gs_setting]
 
 best_q_gs = min(all_q_gs)
 best_q_gs_setting = which(all_q_gs %in% best_q_gs)
-best_q_gs_setting = parameterSet[best_q_gs_setting]
+best_q_gs_setting = parameterSet_gs[best_q_gs_setting]
 worst_q_gs = max(all_q_gs)
 worst_q_gs_setting = which(all_q_gs %in% worst_q_gs)
-worst_q_gs_setting = parameterSet[worst_q_gs_setting]
+worst_q_gs_setting = parameterSet_gs[worst_q_gs_setting]
 
 resultFile_best_gs = paste(outputPath, paste("best_worst_results_", dataSet, "_gsea", ".txt", sep = ""), sep = "/")
 write(paste(paste("best rank: ", best_rank_gs, sep = "  "), paste("parameter setting: ", best_rank_gs_setting, sep = "  "), sep = "  "), file = resultFile_best_gs, append = TRUE)

@@ -9,7 +9,7 @@ dir.create(outputPath)
 #lesn2_path = paste(outputPath, "LESN2", sep = "/"); dir.create(lesn2_path)
 #gcrma_path = paste(outputPath, "GCRMA", sep = "/"); dir.create(gcrma_path)
 
-final_results_path = paste(pipelineLoc, "DataSets/Final_Results" , paste("Analysis_", date, sep = ""), sep = "/")
+final_results_path = paste(pipelineLoc, "DataSets", dataSet, "Output/Final_Results" , paste("Analysis_", date, sep = ""), sep = "/")
 dir.create(final_results_path, showWarnings = FALSE, recursive = TRUE)
 best_ranks_file      = paste(final_results_path, "best_Ranks.tab", sep = "/")
 best_q.values_file   = paste(final_results_path, "best_Q.Values.tab", sep = "/")
