@@ -30,7 +30,6 @@ if(dim(topall)[1] == 0){
   topall$logFC     = round(topall$logFC, 2)
   hgnc_sym_limma   = hgnc_symbols[index_topall]
   hgnc_names_limma = hgnc_names[index_topall]
-  ensembl_limma    = ensembl_genes[index_topall]
 
   topall_res = data.frame(
     "Probe_ids"           = probe_ids,

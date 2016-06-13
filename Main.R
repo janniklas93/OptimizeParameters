@@ -15,7 +15,7 @@ set_case = "Disease"
 data_sets = c("GSE1297", "GSE14762", "GSE14924_CD4", "GSE14924_CD8", "GSE15932_Dia", "GSE15932_Panc", "GSE19420", "GSE19728",
               "GSE20153", "GSE20164", "GSE20291", "GSE21354", "GSE24250", "GSE30153", "GSE32676", "GSE3585", "GSE4107", "GSE4183",
 "GSE5281_EC", "GSE5281_HIP", "GSE5281_VCX", "GSE781", "GSE8762", "GSE9348", "GSE9476")
-data_sets = c("GSE19420")
+data_sets = c("GSE8762")
 #pack_foreach = c("stringr", "hgu133plus2.db", "affy", "simpleaffy", "affyPLM", "affycoretools", "affyQCReport", "annaffy", "limma", "xlsx")
 
 source("Src/parametersToOptimize.R")
@@ -94,6 +94,7 @@ for(i in 1:length(data_sets)) {
         #    source("Src/computeGSEA_java.R", local = TRUE)
         #  }
         #}
+        rm(eset, hgnc_symbols, hgnc_names, fit, volc_all, expression_out, GSOA_out)
       }
     }
   }

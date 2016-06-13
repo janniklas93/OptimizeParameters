@@ -5,7 +5,7 @@ phenoLabels[index_ctrl] = set_ctrl
 if (phenoLabels[1] == set_case){
   pheno_order = paste("#", set_case, set_ctrl, sep = " ")
 } else {
-  pheno_order = paste( "#", set_case, set_ctrl, sep = " ")
+  pheno_order = paste( "#", set_ctrl, set_case, sep = " ")
 }
 phenoLabels = paste(phenoLabels, collapse = " ")
 writeLines(c(paste(length(expression_out) - 2 , "2", "1", sep = " "), pheno_order, phenoLabels), fileConn)
