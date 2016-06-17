@@ -1,4 +1,4 @@
-back_methods = c("GCRMA", "LESN2")
+back_methods = c("MAS", "GCRMA", "LESN2")
 normalize_methods = c("quantile", "scaling")
 summary_methods = c("median.polish", "tukey.biweight", "log.median", "rlm")
 p_change = c(0.05, 0.01)
