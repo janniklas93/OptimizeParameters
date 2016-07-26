@@ -19,7 +19,7 @@ if(dim(topall)[1] == 0){
   )
 } else{
   probe_ids        = rownames(topall)
-  index_topall     = which(rownames(eset) %in% rownames(topall))
+  index_topall     = match(probe_ids, rownames(eset), nomatch = 0)
   if ((dim(topall)[1] == 1)){
     exprs_case = mean(exprs(eset)[index_topall, index_case])
     exprs_ctrl = mean(exprs(eset)[index_topall, index_ctrl])
@@ -30,6 +30,7 @@ if(dim(topall)[1] == 0){
   topall$logFC     = round(topall$logFC, 2)
   hgnc_sym_limma   = hgnc_symbols[index_topall]
   hgnc_names_limma = hgnc_names[index_topall]
+  ensembl_limma    = ensembl_genes[index_topall]
 
   topall_res = data.frame(
     "Probe_ids"           = probe_ids,

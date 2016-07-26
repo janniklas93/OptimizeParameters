@@ -5,7 +5,7 @@ if (kocent){
   pipelineLoc = paste(system("echo $HOME", intern = T), "OptimizeParameters", sep = "/")
 }
 
-#pipelineLoc = "/Users/jan-niklas/OptimizeParameters"
+pipelineLoc = "/Users/Shared/OptimizeParameters"
 setwd(pipelineLoc)
 source("Src/loadPackages.R")
 
@@ -14,28 +14,27 @@ set_case = "Disease"
 
 data_sets = c("GSE1297", "GSE14762", "GSE14924_CD4", "GSE14924_CD8", "GSE15932_Dia", "GSE15932_Panc", "GSE19420", "GSE19728",
               "GSE20153", "GSE20164", "GSE20291", "GSE21354", "GSE24250", "GSE30153", "GSE32676", "GSE3585", "GSE4107", "GSE4183",
-"GSE5281_EC", "GSE5281_HIP", "GSE5281_VCX", "GSE781", "GSE8762", "GSE9348", "GSE9476", "GSE5281_EC")
-data_sets = c("GSE38666_stroma")
-#pack_foreach = c("stringr", "hgu133plus2.db", "affy", "simpleaffy", "affyPLM", "affycoretools", "affyQCReport", "annaffy", "limma", "xlsx")
+"GSE5281_EC", "GSE5281_HIP", "GSE5281_VCX", "GSE781", "GSE8762", "GSE9348", "GSE9476", "GSE38666_epithelia", "GSE38666_stroma", "GSE16759", "GSE24739_G1", "GSE24739_G0")
+data_sets = c("GSE14924_CD4") #, "GSE14762")
+pack_foreach = c("stringr", "hgu133plus2.db", "affy", "simpleaffy", "affyPLM", "affycoretools", "affyQCReport", "annaffy", "limma", "xlsx")
 
 source("Src/parametersToOptimize.R")
 
 #numCores = detectCores() - 1
-#clusters = makeCluster(numCores)
 #registerDoMC(numCores)
+#clusters = makeCluster(numCores)
 #clusterExport(clusters, c("data_sets", "pipelineLoc", "set_ctrl", "set_case", "p_val", "lfc_exp"))
 #registerDoParallel(clusters)
 
 source("Src/processGeneSetDB.R")
 
-#target_pathways = read.table(paste(pipelineLoc, "/Misc/target_pathways.tab", sep = "/"), sep = "\t", header = TRUE)
+target_pathways = read.table(paste(pipelineLoc, "/Misc/target_pathways.tab", sep = "/"), sep = "\t", header = TRUE)
 
 for(i in 1:length(data_sets)) {
 
-
   dataSet = data_sets[i]
   #### set generic initial parameters ####
-  source("Src/setGenericParameters.R", local = TRUE)
+  source("Src/setGenericParameters.R")
   
   #### read cel files from input directory ####
   source("Src/readCEL.R", local = TRUE)
@@ -48,12 +47,12 @@ for(i in 1:length(data_sets)) {
   #  QCReport(rawData, file = paste(qcPath, "QC_report.pdf", sep = "/"))
   #}
   
-  #### perform normalization with changing parameters ####
-  for(b in 1:length(back_methods))  {
+  ### perform normalization with changing parameters ####
+  for(b in 1:length(back_methods)) {
     backMethod = back_methods[b]
-    for(n in 1:length(normalize_methods))  {
+    for(n in 1:length(normalize_methods)) {
       normalizeMethod = normalize_methods[n]
-      for(s in 1:length(summary_methods))  {
+      for(s in 1:length(summary_methods)) {
         summaryMethod = summary_methods[s]
       
         source("Src/normalize.R", local = TRUE)
@@ -73,7 +72,7 @@ for(i in 1:length(data_sets)) {
             #### limma gene set analysis ####
             source("Src/limmaGSOA.R", local = TRUE)
           }
-        }
+         }
         
         #### create expressionSet.gct if doesn't exist ####
         if(! file.exists(paste(celFilesPath, paste("ExpressionSet_", paste(backMethod, normalizeMethod, summaryMethod, sep = "_"), ".gct", sep =""), sep = "/"))){
@@ -86,25 +85,23 @@ for(i in 1:length(data_sets)) {
           source("Src/createPhenoLabels.cls.R", local = TRUE)  
         }
     
-        #for(g in 1:length(permutation_type)){
-        #  permutation = permutation_type[g]
-        #  for(h in 1:length(local_statistics)){
-        #    local_statistic = local_statistics[h]
-        #    #### gsea analysis ####
-        #    source("Src/computeGSEA_java.R", local = TRUE)
-        #  }
-        #}
-        rm(eset, hgnc_symbols, hgnc_names, fit, volc_all, expression_out, GSOA_out)
+        for(g in 1:length(permutation_type)){
+          permutation = permutation_type[g]
+          for(h in 1:length(local_statistics)){
+            local_statistic = local_statistics[h]
+            #### gsea analysis ####
+            source("Src/computeGSEA_java.R")
+          }
+        }
       }
     }
   }
   #### performance limma - extract ranks, p-values, q-values
-  #source("Src/extractResults_limma.R", local = TRUE)
-  
+  source("Src/extractResults_limma.R", local = TRUE)
+   
   #### performance gsea - extract ranks, p-values, q-values
-  #source("Src/extractResults_gsea.R", local = TRUE)
+  source("Src/extractResults_gsea.R")
   
   #### write final results
-  #source("Src/writeFinalResults.R", local = TRUE)
+  #source("Src/writeFinalResults.R")
 }
-#stopCluster(clusters)
